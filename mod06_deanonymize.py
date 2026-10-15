@@ -27,7 +27,9 @@ def link_records(anon_df, aux_df):
         aux_unique,
         on=keys,
         how='inner',
-        suffixes=('_anon', '_aux')
+    )
+    matches = matches.rename(
+        columns={'name': 'matched_name'}
     )
 
     return matches
