@@ -3,16 +3,18 @@ import pandas as pd
 POWER_PER_CORE_KW = 0.05  # 50W per CPU core
 
 
-def compute_energy_kwh(jobs_df, power_per_core_kw=POWER_PER_CORE_KW):
+def compute_energy_kwh(jobs_df, power_per_core_kw):
     """
     Adds a column 'energy_kwh' to the jobs dataframe.
     """
     df = jobs_df.copy()
-    df["energy_kwh"] = ( 
-        # put energy calculation here
 
+    df["energy_kwh"] = (
+        df["cpu_cores"] * df["runtime_hours"] * power_per_core_kw
     )
+
     return df
+
 
 
 def compute_emissions(jobs_df, carbon_intensity):
